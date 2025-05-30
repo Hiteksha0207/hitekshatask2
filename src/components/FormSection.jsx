@@ -39,7 +39,7 @@ const FormSection = ({ formData, setFormData }) => {
     });
 
     try {
-      const response = await fetch("/api/proxy", {
+      const response = await fetch("/api/spas/vendor-spa-update-test/1/", {
         method: "PUT",
         body: payload,
       });
