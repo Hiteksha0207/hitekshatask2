@@ -12,6 +12,7 @@
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/vite": "^4.1.8",
+    "formidable": "^3.5.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "swiper": "^11.2.8",
