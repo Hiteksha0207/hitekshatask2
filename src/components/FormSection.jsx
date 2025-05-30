@@ -92,7 +92,7 @@ const FormSection = ({ formData, setFormData }) => {
             onChange={handleChange}
             required
             placeholder={placeholder}
-            className="w-full px-2 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+            className="w-full px-2 py-2 text-gray-900 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-400 focus:outline-none"
           />
         </div>
       ))}
@@ -111,7 +111,7 @@ const FormSection = ({ formData, setFormData }) => {
           onChange={handleChange}
           required
           placeholder="Enter price"
-          className="w-full px-2 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+          className="w-full px-2 py-2 text-gray-900 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-400 focus:outline-none"
         />
       </div>
 
@@ -128,7 +128,7 @@ const FormSection = ({ formData, setFormData }) => {
           onChange={handleChange}
           required
           step="60"
-          className="w-full px-2 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-400 focus:outline-none"
+          className="w-full px-2 py-2 text-gray-900 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-400 focus:outline-none"
         />
       </div>
 
@@ -144,7 +144,7 @@ const FormSection = ({ formData, setFormData }) => {
           multiple
           onChange={handleChange}
           accept="image/*"
-          className="block w-full"
+          className="block w-full text-gray-900"
         />
 
         {/* Thumbnails with remove button */}
@@ -172,7 +172,7 @@ const FormSection = ({ formData, setFormData }) => {
 
       <button
         type="submit"
-        className="w-full py-2 bg-gradient-to-r from-[#b092ca] to-[#714f7e]  hover:bg-purple-700 text-white font-semibold rounded-lg shadow-md transition"
+        className="w-full py-2 bg-gradient-to-r from-[#b092ca] to-[#714f7e] hover:bg-purple-700 text-white font-semibold rounded-lg shadow-md transition"
       >
         🚀 Submit Spa Details
       </button>
