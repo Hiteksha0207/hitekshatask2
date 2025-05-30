@@ -1,63 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const FormSection = ({ formData, setFormData }) => {
-  const [successMessage, setSuccessMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState("");
 
-const handleChange = (e) => {
-  const { name, value, files } = e.target;
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
 
-  if (name === 'images') {
-    setFormData((prev) => ({
-      ...prev,
-      images: [...(prev.images || []), ...Array.from(files)],
-    }));
-  } else {
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  }
-};
+    if (name === "images") {
+      setFormData((prev) => ({
+        ...prev,
+        images: [...(prev.images || []), ...Array.from(files)],
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const payload = new FormData();
-    payload.append('spa_name', formData.spa_name);
-    payload.append('city', formData.city);
-    payload.append('area', formData.area);
-    payload.append('price', formData.price);
+    payload.append("spa_name", formData.spa_name);
+    payload.append("city", formData.city);
+    payload.append("area", formData.area);
+    payload.append("price", formData.price);
 
     let timingStr = formData.timing;
     if (timingStr && timingStr.length === 5) {
-      timingStr += ':00';
+      timingStr += ":00";
     }
-    payload.append('timing', timingStr);
+    payload.append("timing", timingStr);
 
     formData.images.forEach((img) => {
-      payload.append('images', img);
+      payload.append("images", img);
     });
 
     try {
-      const response = await fetch(
-        'http://20.193.149.47:2242/spas/vendor-spa-update-test/1/',
-        {
-          method: 'PUT',
-          body: payload,
-        }
-      );
+      const response = await fetch("/api/proxy", {
+        method: "PUT",
+        body: payload,
+      });
 
       const result = await response.json();
 
       if (response.ok) {
-        console.log('Submitted successfully:', result);
-        setSuccessMessage('Form submitted successfully!');
-        setTimeout(() => setSuccessMessage(''), 3000);
+        console.log("Submitted successfully:", result);
+        setSuccessMessage("Form submitted successfully!");
+        setTimeout(() => setSuccessMessage(""), 3000);
       } else {
-        console.error('Submit error:', result);
+        console.error("Submit error:", result);
       }
     } catch (error) {
-      console.error('Network error:', error);
+      console.error("Network error:", error);
     }
   };
 
@@ -78,7 +75,10 @@ const handleChange = (e) => {
 
       {/* Spa Name */}
       <div className="mb-3">
-        <label htmlFor="spa_name" className="block mb-2 text-gray-700 font-medium">
+        <label
+          htmlFor="spa_name"
+          className="block mb-2 text-gray-700 font-medium"
+        >
           Spa Name
         </label>
         <input
@@ -147,7 +147,10 @@ const handleChange = (e) => {
 
       {/* Timing */}
       <div className="mb-3">
-        <label htmlFor="timing" className="block mb-2 text-gray-700 font-medium">
+        <label
+          htmlFor="timing"
+          className="block mb-2 text-gray-700 font-medium"
+        >
           Timing
         </label>
         <input
@@ -164,7 +167,10 @@ const handleChange = (e) => {
 
       {/* Images */}
       <div className="mb-3">
-        <label htmlFor="images" className="block mb-2 text-gray-700 font-medium">
+        <label
+          htmlFor="images"
+          className="block mb-2 text-gray-700 font-medium"
+        >
           Images
         </label>
         <input
