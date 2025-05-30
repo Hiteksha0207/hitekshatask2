@@ -11,18 +11,19 @@ export default async function handler(req, res) {
     const response = await fetch(apiUrl, {
       method: req.method,
       headers: {
-        'Content-Type': req.headers['content-type'], // forward correct multipart type
+        'Content-Type': req.headers['content-type'], // Important for multipart/form-data
       },
-      body: req, // forward raw stream (Vercel handles this properly with bodyParser false)
+      body: req, // Stream the raw body
+      duplex: 'half', // 👈 This fixes the issue in Node.js 18+
     });
 
-    const text = await response.text(); // use .text() instead of .json() to safely handle all types
+    const text = await response.text();
 
     try {
       const json = JSON.parse(text);
       res.status(response.status).json(json);
     } catch {
-      res.status(response.status).send(text); // fallback for plain text errors
+      res.status(response.status).send(text);
     }
   } catch (error) {
     console.error('Proxy Error:', error);
