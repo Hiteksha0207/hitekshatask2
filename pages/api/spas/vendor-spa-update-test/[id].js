@@ -1,4 +1,3 @@
-// /pages/api/proxy.js
 import formidable from 'formidable';
 import FormData from 'form-data';
 import fs from 'fs';
@@ -10,7 +9,11 @@ export const config = {
 };
 
 export default async function handler(req, res) {
-  const apiUrl = 'http://20.193.149.47:2242/spas/vendor-spa-update-test/1/';
+  const {
+    query: { id },
+  } = req;
+
+  const apiUrl = `http://20.193.149.47:2242/spas/vendor-spa-update-test/${id}/`;
 
   if (req.method !== 'PUT') {
     return res.status(405).json({ message: 'Method Not Allowed' });
@@ -27,12 +30,10 @@ export default async function handler(req, res) {
     try {
       const formData = new FormData();
 
-      // Append normal fields
       Object.keys(fields).forEach((key) => {
-        formData.append(key, fields[key][0]); // formidable returns arrays
+        formData.append(key, fields[key][0]);
       });
 
-      // Append files
       if (files.images) {
         const images = Array.isArray(files.images) ? files.images : [files.images];
         images.forEach((file) => {
